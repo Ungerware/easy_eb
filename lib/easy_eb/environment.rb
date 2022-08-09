@@ -6,7 +6,6 @@ module EasyEb
     SLUGS = JSON.parse(File.read("#{__dir__}/firstNames.json")).fetch("firstNames")
 
     def self.create!(target:, slug: SLUGS.sample)
-      puts target, slug
       eb_config = YAML.safe_load(File.read(".elasticbeanstalk/config.yml"))
       application_name = eb_config.dig("global", "application_name")
 
