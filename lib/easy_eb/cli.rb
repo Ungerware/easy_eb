@@ -16,5 +16,10 @@ module EasyEb
     def ssh(*command)
       EasyEb::Ssh.start!(command: command.any? ? command.join(" ") : nil, **options.transform_keys(&:to_sym))
     end
+
+    desc "install", "Install essential eb helpers to be checked into your repo"
+    def install
+      EasyEb::Generators::Install.start
+    end
   end
 end

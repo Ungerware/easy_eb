@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -ex
+
+CONFIGHOOK_PATH="$1"
+
+SCRIPT="$(basename "$CONFIGHOOK_PATH")"
+DIR="$(dirname "$CONFIGHOOK_PATH")"
+CONFIGHOOKS_PATH="$(dirname "$DIR")"
+HOOKS_PATH="${CONFIGHOOKS_PATH/confighooks/hooks}"
+HOOK="$(basename "$DIR")"
+
+HOOK_PATH="$HOOKS_PATH/$HOOK/$SCRIPT"
+
+echo "Executing platform hook '$HOOK_PATH' from '$CONFIGHOOK_PATH'"
+
+"$HOOK_PATH"

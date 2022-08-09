@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require "json"
+
+EB_ENV = JSON.load(`/opt/elasticbeanstalk/bin/get-config environment`)
+
+system(
+  {
+    "PATH" => "#{Dir.pwd}/bin:#{ENV["PATH"]}"
+  }.merge(EB_ENV),
+  ARGV.join(" "),
+  exception: true
+)
