@@ -1,8 +1,6 @@
-# EasyEb
+# Easy EB
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/easy_eb`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Slap an easy button on your Elastic Beanstalk config.
 
 ## Installation
 
@@ -16,7 +14,17 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+### Installation
+
+Run this and commit the changes before deploying your application.
+
+    $ ezeb install
+
+### Day to day
+
+Check out the help for the latest and greatest.
+
+    $ ezeb help
 
 ## Development
 
