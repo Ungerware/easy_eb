@@ -46,6 +46,8 @@ jobs:
 
       - name: Publish to RubyGems
         run: |
+          git config --global user.name 'Ungerware Release Bot'
+          git config --global user.email 'Ungerware@users.noreply.github.com'
           mkdir -p $HOME/.gem
           touch $HOME/.gem/credentials
           chmod 0600 $HOME/.gem/credentials
