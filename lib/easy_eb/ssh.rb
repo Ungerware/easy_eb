@@ -3,6 +3,7 @@ module EasyEb
     def self.start!(environment: nil, command: nil, ssh: nil, eb_flags: nil, env_command: "bin/ebenv")
       bash_args = command && "-c \\\"#{env_command} #{command}\\\""
       tty_flag = command && "-t"
+      ssh_flag = ssh && "-e #{ssh}"
       command_arg = [
         tty_flag,
         "cd /var/app/current; sudo bash -i #{bash_args}"
@@ -11,7 +12,7 @@ module EasyEb
       args = [
         eb_flags,
         environment,
-        ssh,
+        ssh_flag,
         "--command \"#{command_arg}\""
       ].compact.join(" ")
 
