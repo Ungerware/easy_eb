@@ -8,6 +8,17 @@ module EasyEb
       EasyEb::Environment.create!(target: target, **options.transform_keys(&:to_sym))
     end
 
+    desc "dns ENVIRONMENT DOMAIN", "Updates or creates a DNS record to point at the specified environment"
+    option :slug, type: :string
+    def dns(environment, domain)
+      EasyEb::Dns.create!(environment: environment, domain: domain)
+    end
+
+    desc "install", "Install essential eb helpers to be checked into your repo"
+    def install
+      EasyEb::Generators::Install.start
+    end
+
     desc "ssh [--environment ENVIRONMENT] [COMMAND]", "Intelligent ssh for elastic beanstalk"
     option :environment, type: :string
     option :ssh, type: :string
@@ -15,11 +26,6 @@ module EasyEb
     option :env_command, type: :string
     def ssh(*command)
       EasyEb::Ssh.start!(command: command.any? ? command.join(" ") : nil, **options.transform_keys(&:to_sym))
-    end
-
-    desc "install", "Install essential eb helpers to be checked into your repo"
-    def install
-      EasyEb::Generators::Install.start
     end
   end
 end
