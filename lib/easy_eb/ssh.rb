@@ -1,6 +1,6 @@
 module EasyEb
   class Ssh
-    def self.start!(environment: nil, command: nil, ssh: nil, eb_flags: nil, env_command: "bin/ebenv")
+    def self.start!(environment: nil, command: nil, ssh: nil, eb_flags: nil, env_command: "bin/ebenv", region: nil)
       bash_args = command && "-c \\\"#{env_command} #{command}\\\""
       tty_flag = command && "-t"
       ssh_flag = ssh && "-e #{ssh}"
@@ -10,6 +10,7 @@ module EasyEb
       ].compact.join(" ")
 
       args = [
+        region && "--region #{region}",
         eb_flags,
         environment,
         ssh_flag,
